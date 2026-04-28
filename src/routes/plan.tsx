@@ -54,18 +54,18 @@ function Plan() {
   };
 
   return (
-    <main className="min-h-screen bg-background">
-      <header className="mx-auto flex max-w-3xl items-center justify-between px-6 py-6">
+    <main className="min-h-screen bg-background pb-16">
+      <header className="mx-auto flex max-w-3xl items-center justify-between px-5 py-5 sm:px-6 sm:py-6">
         <Link to="/" className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-xl bg-primary" />
+          <div className="h-8 w-8 rounded-xl bg-primary shadow-[var(--shadow-soft)]" />
           <span className="font-semibold tracking-tight">Model Planner</span>
         </Link>
-        <span className="text-xs text-muted-foreground">
+        <span className="text-xs font-medium text-muted-foreground">
           Step {step + 1} of {QUESTIONS.length}
         </span>
       </header>
 
-      <div className="mx-auto max-w-3xl px-6">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
           <div
             className="h-full rounded-full bg-primary transition-all duration-500 ease-out"
@@ -75,22 +75,24 @@ function Plan() {
 
         <div
           key={step}
-          className="mt-12 rounded-3xl border border-border bg-card p-8 shadow-[var(--shadow-card)] md:p-10"
+          className="mt-8 rounded-3xl border border-border bg-card p-6 shadow-[var(--shadow-card)] sm:mt-12 sm:p-8 md:p-10"
           style={{ animation: "fadeInUp 0.4s ease both" }}
         >
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+          <h1 className="text-xl font-semibold leading-tight tracking-tight text-foreground sm:text-2xl md:text-3xl">
             {q.title}
           </h1>
-          <p className="mt-2 text-sm text-muted-foreground md:text-base">{q.subtitle}</p>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground md:text-base">
+            {q.subtitle}
+          </p>
 
-          <div className="mt-8 grid gap-3">
+          <div className="mt-6 grid gap-2.5 sm:mt-8 sm:gap-3">
             {q.options.map((o) => {
               const active = current === o.value;
               return (
                 <button
                   key={o.label}
                   onClick={() => pick(o.value)}
-                  className={`group flex items-center justify-between rounded-2xl border px-5 py-4 text-left transition-all ${
+                  className={`group flex w-full items-center justify-between gap-3 rounded-2xl border px-4 py-3.5 text-left transition-all sm:px-5 sm:py-4 ${
                     active
                       ? "border-primary bg-accent shadow-[var(--shadow-soft)]"
                       : "border-border bg-card hover:border-primary/40 hover:bg-muted/50"
@@ -100,7 +102,7 @@ function Plan() {
                     {o.label}
                   </span>
                   <span
-                    className={`flex h-5 w-5 items-center justify-center rounded-full border-2 transition ${
+                    className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition ${
                       active ? "border-primary bg-primary" : "border-border"
                     }`}
                   >
@@ -113,7 +115,7 @@ function Plan() {
 
           {error && <p className="mt-6 text-sm text-destructive">{error}</p>}
 
-          <div className="mt-10 flex items-center justify-between">
+          <div className="mt-8 flex items-center justify-between gap-3 sm:mt-10">
             <button
               onClick={() => setStep((s) => Math.max(0, s - 1))}
               disabled={step === 0}

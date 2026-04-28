@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Sparkles, Target, LineChart, ListChecks, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -22,80 +23,93 @@ export const Route = createFileRoute("/")({
 function Landing() {
   return (
     <main className="min-h-screen bg-background">
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+      <header className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-6 sm:py-6">
         <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-xl bg-primary" />
+          <div className="h-8 w-8 rounded-xl bg-primary shadow-[var(--shadow-soft)]" />
           <span className="font-semibold tracking-tight text-foreground">Model Planner</span>
         </div>
         <Link
           to="/plan"
-          className="rounded-full bg-primary px-5 py-2 text-sm font-medium text-primary-foreground shadow-[var(--shadow-soft)] transition hover:opacity-90"
+          className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-[var(--shadow-soft)] transition hover:opacity-90 sm:px-5"
         >
           Start free
         </Link>
       </header>
 
-      <section
-        className="mx-auto max-w-6xl px-6 pb-20 pt-12 md:pt-20"
-        style={{ background: "var(--gradient-hero)", borderRadius: "2rem", margin: "0 1.5rem" }}
-      >
-        <div className="mx-auto max-w-3xl px-2 text-center md:px-8">
-          <span className="inline-flex items-center gap-2 rounded-full bg-card px-4 py-1.5 text-xs font-medium text-secondary-foreground shadow-[var(--shadow-card)]">
-            ✨ Built for first-time entrepreneurs
-          </span>
-          <h1 className="mt-6 text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
-            Find the right e-commerce model{" "}
-            <span className="text-primary">for who you are.</span>
-          </h1>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Answer a few simple questions. We'll match you with the best business model and show
-            you exactly what to work on next — like a mentor in your pocket.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              to="/plan"
-              className="rounded-full bg-primary px-7 py-3 text-base font-medium text-primary-foreground shadow-[var(--shadow-soft)] transition hover:translate-y-[-1px] hover:opacity-95"
-            >
-              Start the 2-minute quiz
-            </Link>
-            <span className="text-sm text-muted-foreground">No signup. Free forever.</span>
+      {/* HERO */}
+      <section className="px-4 sm:px-6">
+        <div
+          className="mx-auto max-w-6xl rounded-3xl px-5 py-14 sm:px-10 sm:py-20"
+          style={{ background: "var(--gradient-hero)" }}
+        >
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-card px-3.5 py-1.5 text-xs font-medium text-secondary-foreground shadow-[var(--shadow-card)]">
+              <Sparkles className="h-3.5 w-3.5 text-primary" />
+              Built for first-time entrepreneurs
+            </span>
+            <h1 className="mt-6 text-[2rem] font-semibold leading-[1.1] tracking-tight text-foreground sm:text-5xl md:text-6xl">
+              Find the right e-commerce model{" "}
+              <span className="text-primary">for who you are.</span>
+            </h1>
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Answer a few simple questions. We'll match you with the best business model and
+              show you exactly what to work on next — like a mentor in your pocket.
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link
+                to="/plan"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-base font-medium text-primary-foreground shadow-[var(--shadow-soft)] transition hover:-translate-y-0.5 hover:opacity-95 sm:w-auto"
+              >
+                Start the 2-minute quiz
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <span className="text-sm text-muted-foreground">No signup. Free forever.</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-5 px-6 py-16 md:grid-cols-3">
+      {/* FEATURES */}
+      <section className="mx-auto grid max-w-6xl gap-4 px-4 py-14 sm:gap-5 sm:px-6 sm:py-20 md:grid-cols-3">
         {[
           {
+            Icon: Target,
             t: "Smart match",
             d: "Weighted scoring across 7 personal factors finds the model that fits you.",
           },
           {
+            Icon: LineChart,
             t: "Honest insights",
             d: "Success score, failure risk, and the skill gaps holding you back.",
           },
           {
+            Icon: ListChecks,
             t: "Clear next steps",
             d: "Concrete actions to improve your odds — not generic advice.",
           },
-        ].map((f) => (
+        ].map(({ Icon, t, d }) => (
           <div
-            key={f.t}
-            className="rounded-3xl border border-border bg-card p-6 shadow-[var(--shadow-card)]"
+            key={t}
+            className="rounded-3xl border border-border bg-card p-6 shadow-[var(--shadow-card)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]"
           >
-            <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-accent-foreground">
-              ◆
+            <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent text-primary">
+              <Icon className="h-5 w-5" />
             </div>
-            <h3 className="text-lg font-semibold text-foreground">{f.t}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.d}</p>
+            <h3 className="text-lg font-semibold text-foreground">{t}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
           </div>
         ))}
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-20">
-        <div className="rounded-3xl bg-secondary p-10 text-center md:p-14">
-          <h2 className="text-2xl font-semibold text-secondary-foreground md:text-3xl">
+      {/* MODELS */}
+      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6 sm:pb-20">
+        <div className="rounded-3xl bg-secondary p-8 text-center sm:p-12 md:p-14">
+          <h2 className="text-2xl font-semibold tracking-tight text-secondary-foreground sm:text-3xl">
             Three models. One that's right for you.
           </h2>
+          <p className="mx-auto mt-3 max-w-md text-sm text-secondary-foreground/70">
+            We compare these so you don't have to guess.
+          </p>
           <div className="mx-auto mt-8 grid max-w-3xl gap-3 sm:grid-cols-3">
             {["Dropshipping", "Affiliate", "Subscription"].map((m) => (
               <div
