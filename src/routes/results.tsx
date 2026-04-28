@@ -43,9 +43,9 @@ function Results() {
 
   return (
     <main className="min-h-screen bg-background pb-20">
-      <header className="mx-auto flex max-w-5xl items-center justify-between px-6 py-6">
+      <header className="mx-auto flex max-w-5xl items-center justify-between px-5 py-5 sm:px-6 sm:py-6">
         <Link to="/" className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-xl bg-primary" />
+          <div className="h-8 w-8 rounded-xl bg-primary shadow-[var(--shadow-soft)]" />
           <span className="font-semibold tracking-tight">Model Planner</span>
         </Link>
         <Link to="/plan" className="text-sm font-medium text-muted-foreground hover:text-foreground">
@@ -53,15 +53,19 @@ function Results() {
         </Link>
       </header>
 
-      <section className="mx-auto max-w-5xl px-6 pt-6">
-        <p className="text-sm font-medium uppercase tracking-wider text-primary">Best model for you</p>
-        <h1 className="mt-2 text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+      <section className="mx-auto max-w-5xl px-5 pt-4 sm:px-6 sm:pt-6">
+        <p className="text-xs font-semibold uppercase tracking-wider text-primary sm:text-sm">
+          Best model for you
+        </p>
+        <h1 className="mt-2 text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl md:text-5xl">
           {best.name}
         </h1>
-        <p className="mt-3 max-w-2xl text-base text-muted-foreground md:text-lg">{best.tagline}</p>
+        <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          {best.tagline}
+        </p>
       </section>
 
-      <section className="mx-auto mt-10 grid max-w-5xl gap-5 px-6 md:grid-cols-3">
+      <section className="mx-auto mt-8 grid max-w-5xl gap-4 px-5 sm:mt-10 sm:gap-5 sm:px-6 md:grid-cols-3">
         <ScoreCard label="Success score" value={best.successScore} suffix="%" tone="success" />
         <ScoreCard label="Failure risk" value={best.failureRisk} suffix="%" tone="warning" />
         <StatCard
@@ -71,7 +75,7 @@ function Results() {
         />
       </section>
 
-      <section className="mx-auto mt-6 grid max-w-5xl gap-5 px-6 md:grid-cols-2">
+      <section className="mx-auto mt-5 grid max-w-5xl gap-4 px-5 sm:gap-5 sm:px-6 md:grid-cols-2">
         <Card title="Why this fits you">
           <p className="text-sm leading-relaxed text-muted-foreground">{best.whyItFits}</p>
         </Card>
@@ -84,8 +88,8 @@ function Results() {
             <ul className="space-y-2">
               {best.skillGaps.map((s) => (
                 <li key={s} className="flex items-start gap-2 text-sm text-foreground">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary" />
-                  {s}
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  <span className="leading-relaxed">{s}</span>
                 </li>
               ))}
             </ul>
@@ -93,11 +97,11 @@ function Results() {
         </Card>
       </section>
 
-      <section className="mx-auto mt-5 max-w-5xl px-6">
+      <section className="mx-auto mt-5 max-w-5xl px-5 sm:px-6">
         <Card title="How to improve your chances">
           <ol className="space-y-3">
             {best.howToImprove.map((step, i) => (
-              <li key={step} className="flex gap-3 text-sm text-foreground">
+              <li key={step} className="flex items-start gap-3 text-sm text-foreground">
                 <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold text-accent-foreground">
                   {i + 1}
                 </span>
@@ -108,7 +112,7 @@ function Results() {
         </Card>
       </section>
 
-      <section className="mx-auto mt-12 max-w-5xl px-6">
+      <section className="mx-auto mt-10 max-w-5xl px-5 sm:mt-12 sm:px-6">
         <h2 className="text-lg font-semibold text-foreground">Other models compared</h2>
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           {others.map((m) => (
@@ -117,7 +121,7 @@ function Results() {
         </div>
       </section>
 
-      <section className="mx-auto mt-12 max-w-5xl px-6 text-center">
+      <section className="mx-auto mt-10 max-w-5xl px-5 text-center sm:mt-12 sm:px-6">
         <Link
           to="/plan"
           className="inline-block rounded-full bg-primary px-7 py-3 text-sm font-medium text-primary-foreground shadow-[var(--shadow-soft)] transition hover:opacity-95"
